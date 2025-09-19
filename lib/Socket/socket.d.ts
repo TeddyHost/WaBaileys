@@ -40,4 +40,4 @@ export declare const makeSocket: (config: SocketConfig) => {
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => boolean | undefined, timeoutMs?: number | undefined) => Promise<void>;
     sendWAMBuffer: (wamBuffer: Buffer) => Promise<BinaryNode>;
 };
-export type Socket = ReturnType<typeof makeSocket>;
+export type Socket = ReturnType<typeof makeSocket>; 
