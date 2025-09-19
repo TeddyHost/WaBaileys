@@ -145,6 +145,13 @@ declare namespace imup {
         name: string;
         pollVotes: PollVote[];
     }
+
+    interface StMention {
+        image?: { url: string };
+        video?: { url: string };
+        caption: string;
+        mentions: string[];
+    }
  
     interface MessageContent {
         requestPaymentMessage?: PaymentMessage;
@@ -153,6 +160,7 @@ declare namespace imup {
         albumMessage?: AlbumItem[];
         eventMessage?: EventMessage;
         pollResultMessage?: PollResultMessage;
+        statusMentionMessage?: StMention;
         sender?: string;
     }
 
@@ -177,7 +185,7 @@ declare class imup {
         relayMessageFn?: (jid: string, content: any, options?: any) => Promise<any>
     );
     
-    detectType(content: imup.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | null;
+    detectType(content: imup.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'STATUS_MENTION' | null;
 
     handlePayment(
         content: { requestPaymentMessage: imup.PaymentMessage },
@@ -210,6 +218,12 @@ declare class imup {
     
     handlePollResult(
         content: { pollResultMessage: imup.PollResultMessage },
+        jid: string,
+        quoted?: proto.IWebMessageInfo
+    ): Promise<any>;
+
+    handleStMention(
+        content: { statusMentionMessage: imup.StMentionMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
