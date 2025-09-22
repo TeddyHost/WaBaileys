@@ -146,7 +146,7 @@ declare namespace imup {
         pollVotes: PollVote[];
     }
 
-    interface StMention {
+    interface StatusMentionMessage {
         image?: { url: string };
         video?: { url: string };
         caption: string;
