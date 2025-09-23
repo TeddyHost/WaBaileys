@@ -82,6 +82,7 @@ declare namespace imup {
             mentionedJid?: string[];
             forwardingScore?: number;
             isForwarded?: boolean;
+            forwardedNewsletterMessageInfo?: proto.Message.ContextInfo.ForwardedNewsletterMessageInfo;
             externalAdReply?: {
                 title?: string;
                 body?: string;
@@ -147,8 +148,8 @@ declare namespace imup {
     }
 
     interface StatusMentionMessage {
-        image?: { url: string };
-        video?: { url: string };
+        image?: string | { url: string };
+        video?: string | { url: string };
         caption: string;
         mentions: string[];
     }
@@ -223,7 +224,7 @@ declare class imup {
     ): Promise<any>;
 
     handleStMention(
-        content: { statusMentionMessage: imup.StMentionMessage },
+        content: { statusMentionMessage: imup.StatusMentionMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
