@@ -141,10 +141,16 @@ declare namespace imup {
         optionName: string;
         optionVoteCount: string | number;
     }
+
+    interface context {
+        newsletterJid: string;
+        newsletterName: string;
+    }
     
     interface PollResultMessage {
         name: string;
         pollVotes: PollVote[];
+        newsletter?: context;
     }
 
     interface StatusMentionMessage {
