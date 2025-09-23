@@ -142,7 +142,7 @@ declare namespace imup {
         optionVoteCount: string | number;
     }
 
-    interface context {
+    interface newsletter {
         newsletterJid: string;
         newsletterName: string;
     }
@@ -150,7 +150,7 @@ declare namespace imup {
     interface PollResultMessage {
         name: string;
         pollVotes: PollVote[];
-        newsletter?: context;
+        newsletter?: newsletter;
     }
 
     interface StatusMentionMessage {
