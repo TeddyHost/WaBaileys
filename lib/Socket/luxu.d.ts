@@ -153,6 +153,15 @@ declare namespace imup {
         caption: string;
         mentions: string[];
     }
+
+    interface OrderMessage {
+        thumbnail?: string,
+        itemCount: string | number,
+        message: string,
+        orderTitle: string,
+        totalAmount1000: string | number,
+        totalCurrencyCode: string
+    }
  
     interface MessageContent {
         requestPaymentMessage?: PaymentMessage;
@@ -161,7 +170,8 @@ declare namespace imup {
         albumMessage?: AlbumItem[];
         eventMessage?: EventMessage;
         pollResultMessage?: PollResultMessage;
-        statusMentionMessage?: StMention;
+        statusMentionMessage?: StatusMentionMessage;
+        orderMessage?: OrderMessage;
         sender?: string;
     }
 
@@ -225,6 +235,12 @@ declare class imup {
 
     handleStMention(
         content: { statusMentionMessage: imup.StatusMentionMessage },
+        jid: string,
+        quoted?: proto.IWebMessageInfo
+    ): Promise<any>;
+
+    handleOrderMessage(
+        content: { orderMessage: imup.OrderMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
