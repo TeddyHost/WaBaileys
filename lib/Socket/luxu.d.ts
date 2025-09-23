@@ -155,11 +155,11 @@ declare namespace imup {
     }
 
     interface OrderMessage {
-        thumbnail?: string,
-        itemCount: string | number,
+        thumbnail?: string | null,
+        itemCount?: string | number,
         message: string,
         orderTitle: string,
-        totalAmount1000: string | number,
+        totalAmount1000?: string | number,
         totalCurrencyCode: string
     }
  
@@ -196,7 +196,7 @@ declare class imup {
         relayMessageFn?: (jid: string, content: any, options?: any) => Promise<any>
     );
     
-    detectType(content: imup.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'STATUS_MENTION' | null;
+    detectType(content: imup.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'STATUS_MENTION' | 'ORDER' | null;
 
     handlePayment(
         content: { requestPaymentMessage: imup.PaymentMessage },
