@@ -15,7 +15,7 @@
 ```javascript
 const {
   default:makeWASocket,
-  // Other Options
+  // Other Options 
 } = require('@whiskeysockets/baileys');
 ```
 
