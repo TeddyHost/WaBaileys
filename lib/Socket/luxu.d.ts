@@ -141,16 +141,14 @@ declare namespace imup {
         optionName: string;
         optionVoteCount: string | number;
     }
-
-    interface newsletter {
-        newsletterJid: string;
-        newsletterName: string;
-    }
     
     interface PollResultMessage {
         name: string;
         pollVotes: PollVote[];
-        newsletter?: newsletter;
+        newsletter?: {
+            newsletterName: string;
+            newsletterJid: string;
+        };
     }
 
     interface StatusMentionMessage {
@@ -161,7 +159,7 @@ declare namespace imup {
     }
 
     interface OrderMessage {
-        thumbnail?: string | null,
+        thumbnail?: Buffer | string,
         itemCount?: string | number,
         message: string,
         orderTitle: string,
