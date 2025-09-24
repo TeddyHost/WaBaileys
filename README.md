@@ -14,7 +14,8 @@
 ## Import
 ```javascript
 const {
-  default:makeWASocket
+  default:makeWASocket,
+  // Other Options
 } = require('@whiskeysockets/baileys');
 ```
 
