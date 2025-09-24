@@ -19,3 +19,33 @@ const {
 ```
 
 ---
+# How To Connect To Whatsapp
+## With QR Code
+```javascript
+const {
+  default: makeWASocket
+} = require('@whiskeysockets/baileys');
+
+const client = makeWASocket({
+  browser: ['Ubuntu', 'Chrome', '20.00.1'],
+  printQRInTerminal: true
+})
+```
+
+## Connect With Number
+```javascript
+const {
+  default: makeWASocket
+} = require('@whiskeysockets/baileys');
+
+const client = makeWASocket({
+  browser: ['Ubuntu', 'Chrome', '20.00.1'],
+  printQRInTerminal: true,
+  // Other options
+});
+
+const number = "628XXXXX";
+const code = await client.requestPairingCode(number.trim) /* Use : (number, "YYYYYYYY") for custom-pairing */
+
+console.log("Ur pairing code : " + code)
+```
