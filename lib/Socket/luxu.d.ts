@@ -1,6 +1,6 @@
 import { proto } from '../../WAProto';
 
-declare namespace imup {
+declare namespace nted {
     interface MediaUploadOptions {
         fileEncSha256?: Buffer;
         mediaType?: string;
@@ -153,9 +153,7 @@ declare namespace imup {
 
     interface StatusMentionMessage {
         image?: string | { url: string };
-        video?: string | { url: string };
-        caption: string;
-        mentions: string[];
+        video?: string | { url: string }; 
     }
 
     interface OrderMessage {
@@ -193,61 +191,61 @@ declare namespace imup {
     }
 }
 
-declare class imup {
+declare class nted {
     constructor(
-        utils: imup.Utils,
-        waUploadToServer: imup.WAMediaUploadFunction,
+        utils: nted.Utils,
+        waUploadToServer: nted.WAMediaUploadFunction,
         relayMessageFn?: (jid: string, content: any, options?: any) => Promise<any>
     );
     
-    detectType(content: imup.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'STATUS_MENTION' | 'ORDER' | null;
+    detectType(content: nted.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'STATUS_MENTION' | 'ORDER' | null;
 
     handlePayment(
-        content: { requestPaymentMessage: imup.PaymentMessage },
+        content: { requestPaymentMessage: nted.PaymentMessage },
         quoted?: proto.IWebMessageInfo
     ): Promise<{ requestPaymentMessage: proto.Message.RequestPaymentMessage }>;
 
     handleProduct(
-        content: { productMessage: imup.ProductMessage },
+        content: { productMessage: nted.ProductMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<{ viewOnceMessage: proto.Message.ViewOnceMessage }>;
 
     handleInteractive(
-        content: { interactiveMessage: imup.InteractiveMessage },
+        content: { interactiveMessage: nted.InteractiveMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<{ interactiveMessage: proto.Message.InteractiveMessage }>;
 
     handleAlbum(
-        content: { albumMessage: imup.AlbumItem[] },
+        content: { albumMessage: nted.AlbumItem[] },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 
     handleEvent(
-        content: { eventMessage: imup.EventMessage },
+        content: { eventMessage: nted.EventMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
     
     handlePollResult(
-        content: { pollResultMessage: imup.PollResultMessage },
+        content: { pollResultMessage: nted.PollResultMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 
     handleStMention(
-        content: { statusMentionMessage: imup.StatusMentionMessage },
+        content: { statusMentionMessage: nted.StatusMentionMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 
     handleOrderMessage(
-        content: { orderMessage: imup.OrderMessage },
+        content: { orderMessage: nted.OrderMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 }
 
-export = imup;
+export = nted;
